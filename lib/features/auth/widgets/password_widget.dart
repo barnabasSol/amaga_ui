@@ -1,17 +1,10 @@
-// ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables
-
 import 'package:flutter/material.dart';
 
-class CredentialInput extends StatelessWidget {
+class PasswordInput extends StatelessWidget {
   final bool? isValid;
-  final String? label;
-  final input_controller;
+  const PasswordInput({Key? key, this.isValid}) : super(key: key);
 
-  const CredentialInput(
-      {Key? key, this.isValid, this.input_controller, this.label})
-      : super(key: key);
-
-//email or phonenumber input
+//password input
   @override
   Widget build(BuildContext context) {
     Color primaryColor = Theme.of(context).colorScheme.primary;
@@ -19,7 +12,6 @@ class CredentialInput extends StatelessWidget {
       width: 390,
       child: TextFormField(
         decoration: InputDecoration(
-          labelText: label,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide:
@@ -29,15 +21,15 @@ class CredentialInput extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
             borderSide: BorderSide(color: primaryColor),
           ),
+          labelText: 'Password',
           border: OutlineInputBorder(
-            borderRadius:
-                BorderRadius.circular(18.0), // Set the border radius here
+            borderRadius: BorderRadius.circular(18.0),
           ),
         ),
-        keyboardType: TextInputType.emailAddress,
+        obscureText: true,
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return 'Please enter your email or phone number';
+            return 'Please enter your password';
           }
           return null;
         },

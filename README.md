@@ -1,16 +1,30 @@
 # amaga
 
-A new Flutter project.
+# Flutter Project Setup
 
-## Getting Started
+This project is structured to ensure a clean architecture and separation of concerns.
 
-This project is a starting point for a Flutter application.
+## Project Structure
 
-A few resources to get you started if this is your first Flutter project:
+The `lib` directory contains the main code for the Flutter application. It is organized into two main subdirectories: `features` and `services`.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The `features` directory contains different functionalities of the application. Each feature has its own directory. For example, the `auth` directory contains all the authentication-related code.
+
+The `auth` directory is further divided into `pages`, `widgets`, and `repository`:
+
+- `pages`: Contains the screens related to authentication.
+- `widgets`: Contains the reusable UI components used in the authentication pages.
+- `repository`: Contains the code to manage data for the authentication feature.
+
+### Services
+
+The `services` directory contains the code that handles API calls. The methods in the relevant `repository` folder are used to make these API calls.
+
+If an API call fails, the repository uses data from the `db` folder, which holds the SQLite database, as a fallback.
+
+## Conclusion
+
+This setup ensures that each part of the application has a specific role, making the codebase easier to navigate and maintain.
+

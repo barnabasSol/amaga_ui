@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
-
 import 'package:amaga/features/registerer/widgets/add_customer_button.dart';
-import 'package:amaga/features/registerer/widgets/input.dart';
+import 'package:amaga/shared/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
 
 class AddCustomerpage extends StatefulWidget {
@@ -13,7 +12,17 @@ class AddCustomerpage extends StatefulWidget {
 
 class _AddCustomerpageState extends State<AddCustomerpage> {
   List<String> labels = ["Name", "Phone Number", "Email (Optional)"];
-  List<TextEditingController> text_controllers = [];
+  List<TextEditingController> textControllers = [];
+
+  @override
+  void initState() {
+    super.initState();
+    textControllers = List.generate(
+      labels.length,
+      (index) => TextEditingController(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +44,8 @@ class _AddCustomerpageState extends State<AddCustomerpage> {
           const SizedBox(height: 50),
           ...List.generate(
             labels.length,
-            (index) => Input(
+            (index) => CustomInput(
+              input_controller: textControllers[index],
               label: labels[index],
             ),
           ),

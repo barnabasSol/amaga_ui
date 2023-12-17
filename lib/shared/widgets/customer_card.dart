@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 
 class CustomerCard extends StatelessWidget {
   final String name;
-  final String email;
+  final String? email;
   final String phone;
-  final int cylinders;
+  final int? cylinders;
   final void Function()? onClicked;
 
   const CustomerCard({
     Key? key,
     this.onClicked,
     required this.name,
-    required this.email,
+    this.email,
     required this.phone,
-    required this.cylinders,
+    this.cylinders,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Color primaryColor = Theme.of(context).colorScheme.primary;
     return GestureDetector(
       onTap: onClicked,
       child: Container(
@@ -39,9 +40,13 @@ class CustomerCard extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.only(top: 8),
                 alignment: Alignment.topCenter,
-                child: const Icon(
-                  Icons.person,
-                  size: 50,
+                child: CircleAvatar(
+                  backgroundColor: primaryColor,
+                  radius: 25,
+                  child: Text(
+                    name[0].toUpperCase(),
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
                 ),
               ),
             ),
@@ -69,9 +74,9 @@ class CustomerCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      email,
-                      style: const TextStyle(
-                        color: Colors.black,
+                      email != null ? email! : 'No email',
+                      style: TextStyle(
+                        color: email != null ? Colors.black : Colors.grey,
                         fontSize: 19,
                       ),
                     ),
@@ -88,10 +93,11 @@ class CustomerCard extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(right: 16),
                           child: Text(
-                            ' $cylinders cylinders',
+                            '$cylinders cylinders',
                             style: const TextStyle(
-                                fontSize: 20,
-                                color: Color.fromARGB(255, 143, 141, 141)),
+                              fontSize: 20,
+                              color: Color.fromARGB(255, 143, 141, 141),
+                            ),
                           ),
                         )
                       ],

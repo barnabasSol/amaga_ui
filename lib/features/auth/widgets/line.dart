@@ -14,11 +14,14 @@ class _LineState extends State<Line> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        lineWidth = 90;
-      });
-    });
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        setState(() {
+          lineWidth = 90;
+        });
+      },
+    );
   }
 
   @override

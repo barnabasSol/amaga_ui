@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 
-class ErrorMesage extends StatelessWidget {
+class ErrorMessage extends StatelessWidget {
   final String message;
   final bool isVisible;
-  const ErrorMesage(
-      {super.key, required this.message, required this.isVisible});
+  const ErrorMessage({Key? key, required this.message, required this.isVisible})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      isVisible ? message : "",
-      style: const TextStyle(color: Colors.red, fontSize: 26),
+    return Visibility(
+      visible: isVisible,
+      child: SnackBar(
+        content: Text(
+          message,
+          style: const TextStyle(color: Colors.red, fontSize: 26),
+        ),
+      ),
     );
   }
 }

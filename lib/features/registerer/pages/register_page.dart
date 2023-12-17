@@ -1,16 +1,22 @@
-import 'package:amaga/features/registerer/repository/customer_list_data.dart';
-import 'package:amaga/features/registerer/widgets/cutomer_card.dart';
-import 'package:amaga/features/registerer/widgets/search.dart';
+import 'package:amaga/features/registerer/pages/customer_cylinder_page.dart';
+import 'package:amaga/shared/mockdata/customer_list_data.dart';
+import 'package:amaga/features/registerer/repository/customer_logic.dart';
+import 'package:amaga/shared/widgets/customer_card.dart';
+import 'package:amaga/shared/widgets/search.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  const RegisterPage({super.key, required this.token});
+
+  final String token;
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final CustomerLogic customerLogic = CustomerLogic();
+
   @override
   Widget build(BuildContext context) {
     Color primaryColor = Theme.of(context).colorScheme.primary;
@@ -49,16 +55,38 @@ class _RegisterPageState extends State<RegisterPage> {
             height: 10,
           ),
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.only(left: 13, right: 13),
-              itemCount: customers.length,
-              itemBuilder: (context, index) => CustomerCard(
-                  name: customers[index].name,
-                  email: customers[index].email,
-                  phone: customers[index].phone,
-                  cylinders: customers[index].cylinders),
+            child: RefreshIndicator(
+              onRefresh: () async {
+                setState(() {
+                  customers = customers.take(4).toList();
+                });
+                await Future.delayed(
+                  const Duration(seconds: 2),
+                );
+              },
+              child: ListView.builder(
+                padding: const EdgeInsets.only(left: 13, right: 13),
+                itemCount: customers.length,
+                itemBuilder: (context, index) => CustomerCard(
+                    name: customers[index].name,
+                    email: customers[index].email,
+                    phone: customers[index].phone,
+                    onClicked: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CustomerCylinderPage(
+                            name: customers[index].name,
+                            email: customers[index].email,
+                            phoneNumber: customers[index].phone,
+                          ),
+                        ),
+                      );
+                    },
+                    cylinders: customers[index].cylinders),
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

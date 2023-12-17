@@ -1,8 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class PasswordInput extends StatelessWidget {
   final bool? isValid;
-  const PasswordInput({Key? key, this.isValid}) : super(key: key);
+  final TextEditingController input_controller;
+  const PasswordInput({Key? key, this.isValid, required this.input_controller})
+      : super(key: key);
 
 //password input
   @override
@@ -11,6 +15,7 @@ class PasswordInput extends StatelessWidget {
     return SizedBox(
       width: 390,
       child: TextFormField(
+        controller: input_controller,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),

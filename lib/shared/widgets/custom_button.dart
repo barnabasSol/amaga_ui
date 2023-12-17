@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 
-class LoginButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final void Function() onClicked;
-
-  const LoginButton({Key? key, required this.onClicked}) : super(key: key);
+  final String label;
+  final double width;
+  final double height;
+  const CustomButton(
+      {Key? key,
+      required this.onClicked,
+      required this.label,
+      required this.width,
+      required this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 350, // Specify your desired width
-      height: 60,
+      width: width, // Specify your desired width
+      height: height,
       child: TextButton(
         onPressed: onClicked,
         style: TextButton.styleFrom(
@@ -19,9 +27,9 @@ class LoginButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(17.0), // Set the border radius
           ),
         ),
-        child: const Text(
-          'Login',
-          style: TextStyle(color: Colors.white, fontSize: 20),
+        child: Text(
+          label,
+          style: const TextStyle(color: Colors.white, fontSize: 20),
         ),
       ),
     );

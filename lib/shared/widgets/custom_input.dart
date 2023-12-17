@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 
-class CredentialInput extends StatelessWidget {
+class CustomInput extends StatelessWidget {
   final bool? isValid;
   final String? label;
   final input_controller;
 
-  const CredentialInput(
-      {Key? key, this.isValid, this.input_controller, this.label})
+  const CustomInput(
+      {Key? key, this.isValid, required this.input_controller, this.label})
       : super(key: key);
 
 //email or phonenumber input
@@ -17,7 +17,9 @@ class CredentialInput extends StatelessWidget {
     Color primaryColor = Theme.of(context).colorScheme.primary;
     return SizedBox(
       width: 390,
+      height: 80,
       child: TextFormField(
+        controller: input_controller,
         decoration: InputDecoration(
           labelText: label,
           enabledBorder: OutlineInputBorder(

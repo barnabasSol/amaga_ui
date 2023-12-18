@@ -4,9 +4,10 @@ class Customer {
   final String phone;
   final int cylinders;
 
-  Customer(
-      {required this.name,
-      required this.email,
-      required this.phone,
-      required this.cylinders});
+  Customer({
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.cylinders,
+  });
 }

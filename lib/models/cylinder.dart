@@ -4,9 +4,10 @@ class Cylinder {
   final String type;
   final int volume;
 
-  Cylinder(
-      {required this.serialId,
-      required this.color,
-      required this.type,
-      required this.volume});
+  Cylinder({
+    required this.serialId,
+    required this.color,
+    required this.type,
+    required this.volume,
+  });
 }

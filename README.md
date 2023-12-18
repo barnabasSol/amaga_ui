@@ -2,7 +2,7 @@
 
 # Flutter Project Setup
 
-This project is structured to ensure a clean architecture and separation of concerns.
+This project is structured to ensure a clean architecture and separation of concerns along with repository pattern to abstract buisness logic in the respective features.
 
 ## Project Structure
 
@@ -31,3 +31,25 @@ The `models` directory contains classes that handle the parsing of JSON to Dart 
 ### Shared
 
 The `shared` directory holds Data Transfer Objects (DTOs) and types to handle the data that is exchanged between the server and the client.
+
+---
+
+# Guide to Test Logins
+
+## Step 1: Navigate to the Auth Repository
+
+In the `auth` directory, you'll find the `repository` folder. This contains the logic for login and its implementation.
+
+## Step 2: Default Credential 
+
+In the `LoginLogicImpl` class there's a function called `loginValidate()`, this is the function that handles client input validation but as a placeholder, there's a default credential with `abebe` and password: `123`, this function will be updated later.   
+
+## Step 3: Understand the Login Logic
+
+There's a function called `handleSuccessfulLogin()`. This function shows how different roles are navigated to their respective pages upon successful login. the function will be further separated and abstracted later.
+
+## Step 4: Test Different Roles
+
+There's another function called `authResponse()`. This function is a placeholder for when the API responds with a token and a role. To test out the different pages, change the value of the variable called `role` in the `authResponse()` function. Depending on the role you set, the login should lead to the correct page.
+
+When the API is ready this function will be foiled in `Future<>` and gets to utilize the login API call in the `servics` directory

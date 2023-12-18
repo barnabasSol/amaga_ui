@@ -5,11 +5,11 @@ import 'package:amaga/shared/widgets/custom_button.dart';
 import 'package:amaga/shared/widgets/submission_detail.dart';
 import 'package:flutter/material.dart';
 
-class TesterSubmissionPage extends StatefulWidget {
+class MaintainSubmissionPage extends StatefulWidget {
   final String customer_name;
   final String serial_id;
   final String volume;
-  const TesterSubmissionPage({
+  const MaintainSubmissionPage({
     super.key,
     required this.customer_name,
     required this.serial_id,
@@ -17,10 +17,10 @@ class TesterSubmissionPage extends StatefulWidget {
   });
 
   @override
-  State<TesterSubmissionPage> createState() => TesterSubmissionPageState();
+  State<MaintainSubmissionPage> createState() => MaintainSubmissionPageState();
 }
 
-class TesterSubmissionPageState extends State<TesterSubmissionPage> {
+class MaintainSubmissionPageState extends State<MaintainSubmissionPage> {
   List<String> selectedItems = [];
 
   void handleItemSelected(String value) {
@@ -39,6 +39,10 @@ class TesterSubmissionPageState extends State<TesterSubmissionPage> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         titleSpacing: 2,
+        title: const Text(
+          "Maintain",
+          style: TextStyle(color: Colors.white),
+        ),
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -55,7 +59,7 @@ class TesterSubmissionPageState extends State<TesterSubmissionPage> {
                 volume: widget.volume),
             const SizedBox(height: 15),
             CheckList(
-              items: const ['Gear', 'Valve', 'T-Bolt', 'No Problem'],
+              items: const ['Gear', 'Valve', 'T-Bolt'],
               onItemSelected: (String value) => handleItemSelected(value),
             ),
             const SizedBox(height: 15),

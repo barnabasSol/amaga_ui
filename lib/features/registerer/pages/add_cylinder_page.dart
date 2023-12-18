@@ -16,8 +16,8 @@ class AddCylinderPage extends StatefulWidget {
 
 class _State extends State<AddCylinderPage> {
   List<String> labels = ["Serial Number", "Liter", "Color"];
-  List<String> items = ["F", "T", "M"];
   List<TextEditingController> textControllers = [];
+  List<String> items = ["F", "T", "M"];
   String selected_gas = "";
 
   void showSnackBar(BuildContext context, String message) {

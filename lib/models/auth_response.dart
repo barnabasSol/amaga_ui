@@ -4,5 +4,10 @@ class AuthResponse {
   final String token;
   final String role;
 
-  AuthResponse(this.isSuccess, this.message, {required this.token, required this.role});
+  AuthResponse(
+    this.isSuccess,
+    this.message, {
+    required this.token,
+    required this.role,
+  });
 }

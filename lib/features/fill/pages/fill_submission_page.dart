@@ -1,15 +1,15 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:amaga/features/tester/widgets/tester_confirmation.dart';
-import 'package:amaga/shared/widgets/check_box_list.dart';
+import 'package:amaga/features/fill/widgets/fill_confirmation.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
+import 'package:amaga/shared/widgets/drop_down.dart';
 import 'package:amaga/shared/widgets/submission_detail.dart';
 import 'package:flutter/material.dart';
 
-class TesterSubmissionPage extends StatefulWidget {
+class FillSubmissionPage extends StatefulWidget {
   final String customer_name;
   final String serial_id;
   final String volume;
-  const TesterSubmissionPage({
+  const FillSubmissionPage({
     super.key,
     required this.customer_name,
     required this.serial_id,
@@ -17,21 +17,12 @@ class TesterSubmissionPage extends StatefulWidget {
   });
 
   @override
-  State<TesterSubmissionPage> createState() => TesterSubmissionPageState();
+  State<FillSubmissionPage> createState() => FillSubmissionPageState();
 }
 
-class TesterSubmissionPageState extends State<TesterSubmissionPage> {
-  List<String> selectedItems = [];
-
-  void handleItemSelected(String value) {
-    setState(() {
-      if (selectedItems.contains(value)) {
-        selectedItems.remove(value);
-      } else {
-        selectedItems.add(value);
-      }
-    });
-  }
+class FillSubmissionPageState extends State<FillSubmissionPage> {
+  List<String> items = ["F", "T", "M"];
+  String selected_gas = "";
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +30,10 @@ class TesterSubmissionPageState extends State<TesterSubmissionPage> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         titleSpacing: 2,
+        title: const Text(
+          "Fill",
+          style: TextStyle(color: Colors.white),
+        ),
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -54,19 +49,21 @@ class TesterSubmissionPageState extends State<TesterSubmissionPage> {
                 serial_id: widget.serial_id,
                 volume: widget.volume),
             const SizedBox(height: 15),
-            CheckList(
-              items: const ['Gear', 'Valve', 'T-Bolt', 'No Problem'],
-              onItemSelected: (String value) => handleItemSelected(value),
+            CustomDropDown(
+              onSelected: (String value) {
+                selected_gas = value;
+              },
+              items: items,
             ),
             const SizedBox(height: 15),
             CustomButton(
               onClicked: () {
-                if (selectedItems.isNotEmpty) {
+                if (selected_gas.isNotEmpty) {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return TesterPopUp(
-                        selectedItems: selectedItems,
+                      return FillConfirmation(
+                        gas_type: selected_gas,
                         parent_context: context,
                       );
                     },

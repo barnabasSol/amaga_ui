@@ -5,42 +5,30 @@ import 'package:amaga/shared/widgets/pill.dart';
 import 'package:amaga/shared/widgets/search.dart';
 import 'package:flutter/material.dart';
 
-class TesterMainPage extends StatefulWidget {
-  const TesterMainPage({super.key, required this.token});
-  final String token;
-  final String role = "tester";
+class MaintainMainPage extends StatefulWidget {
+  const MaintainMainPage({super.key, required this.token});
 
+  final String role = "maintain";
+
+  final String token;
   @override
-  State<TesterMainPage> createState() => _TesterMainPageState();
+  State<MaintainMainPage> createState() => _MaintainMainPageState();
 }
 
-class _TesterMainPageState extends State<TesterMainPage> {
+class _MaintainMainPageState extends State<MaintainMainPage> {
   bool byCustomer = true;
   bool byCylinder = false;
-
   @override
   Widget build(BuildContext context) {
-    Color primaryColor = Theme.of(context).colorScheme.primary;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      floatingActionButton: SizedBox(
-        height: 70,
-        width: 70,
-        child: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: primaryColor,
-          shape: const CircleBorder(eccentricity: 0),
-          foregroundColor: Colors.white,
-          child: const Icon(Icons.add),
-        ),
-      ),
       drawer: const Drawer(),
       appBar: AppBar(
         titleSpacing: 2,
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Theme.of(context).primaryColor,
         title: const Text(
-          'Tester',
+          'Maintain',
           style: TextStyle(color: Colors.white, fontSize: 29),
         ),
       ),
@@ -75,11 +63,12 @@ class _TesterMainPageState extends State<TesterMainPage> {
             height: 10,
           ),
           FilteredList(
-              role: widget.role,
-              byCustomer: byCustomer,
-              byCylinder: byCylinder,
-              customers: customers,
-              cylinders: cylinder_data)
+            byCustomer: byCustomer,
+            byCylinder: byCylinder,
+            customers: customers,
+            cylinders: cylinder_data,
+            role: widget.role,
+          )
         ],
       ),
     );

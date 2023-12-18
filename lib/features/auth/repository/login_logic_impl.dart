@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:amaga/features/auth/repository/contracts/login_logic.dart';
+import 'package:amaga/features/fill/pages/fill_main_page.dart';
+import 'package:amaga/features/maintain/pages/maintain_main_page.dart';
 import 'package:amaga/features/registerer/pages/register_page.dart';
 import 'package:amaga/features/tester/pages/tester_page.dart';
 import 'package:amaga/models/auth_response.dart';
@@ -20,7 +22,7 @@ class LoginLogicImpl implements LoginLogic {
 
   @override
   AuthResponse authResponse(String credential, String password) {
-    String role = "tester";
+    String role = "fill";
     String token = "sldfbslhbdlshbdbgsldfg";
     return AuthResponse(true, "", token: token, role: role);
   }
@@ -44,6 +46,20 @@ class LoginLogicImpl implements LoginLogic {
         context,
         MaterialPageRoute(
           builder: (context) => TesterMainPage(token: response.token),
+        ),
+      );
+    } else if (response.role == "maintain") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MaintainMainPage(token: response.token),
+        ),
+      );
+    } else if (response.role == "fill") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FillerMainPage(token: response.token),
         ),
       );
     }

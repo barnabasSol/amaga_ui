@@ -1,3 +1,5 @@
+import 'package:amaga/features/fill/pages/customers_cylinders_f.dart';
+import 'package:amaga/features/maintain/pages/customers_cylinders_m.dart';
 import 'package:amaga/features/tester/pages/customer_cylinders_t.dart';
 import 'package:amaga/models/customer.dart';
 import 'package:amaga/models/cylinder.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class FilteredList extends StatefulWidget {
+  final String role;
   final bool byCustomer;
   final bool byCylinder;
   List<Customer> customers;
@@ -18,6 +21,7 @@ class FilteredList extends StatefulWidget {
     required this.byCylinder,
     required this.customers,
     required this.cylinders,
+    required this.role,
   });
 
   @override
@@ -51,14 +55,34 @@ class _FilteredListState extends State<FilteredList> {
                   phone: widget.customers[index].phone,
                   cylinders: widget.customers[index].cylinders,
                   onClicked: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CustomerCylinderT(
-                          customer_name: customers[index].name,
+                    if (widget.role == "maintain") {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CustomerCylindersPageM(
+                            customer_name: customers[index].name,
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    } else if (widget.role == "tester") {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CustomerCylindersPageT(
+                            customer_name: customers[index].name,
+                          ),
+                        ),
+                      );
+                    } else if (widget.role == "fill") {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CustomerCylindersPageF(
+                            customer_name: customers[index].name,
+                          ),
+                        ),
+                      );
+                    }
                   },
                 ),
               )
@@ -69,6 +93,7 @@ class _FilteredListState extends State<FilteredList> {
                   color: widget.cylinders[index].color,
                   serialId: widget.cylinders[index].serialId,
                   volume: widget.cylinders[index].volume.toString(),
+                  onClicked: () {},
                 ),
               ),
       ),

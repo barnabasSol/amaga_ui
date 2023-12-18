@@ -22,6 +22,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
       height: 60,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
+        color: Colors.white,
         border: Border.all(color: const Color.fromARGB(255, 168, 167, 166)),
         borderRadius: BorderRadius.circular(13),
       ),

@@ -1,20 +1,20 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:amaga/features/tester/pages/tester_submission_page.dart';
+import 'package:amaga/features/fill/pages/fill_submission_page.dart';
 import 'package:amaga/shared/mockdata/cylinder_data.dart';
 import 'package:amaga/shared/widgets/cylinder_card_no_type.dart';
 import 'package:amaga/shared/widgets/search.dart';
 import 'package:flutter/material.dart';
 
-class CustomerCylindersPageT extends StatefulWidget {
-  const CustomerCylindersPageT({super.key, required this.customer_name});
+class CustomerCylindersPageF extends StatefulWidget {
+  const CustomerCylindersPageF({super.key, required this.customer_name});
 
   final String customer_name;
 
   @override
-  State<CustomerCylindersPageT> createState() => CustomerCylindersTState();
+  State<CustomerCylindersPageF> createState() => CustomerCylindersFState();
 }
 
-class CustomerCylindersTState extends State<CustomerCylindersPageT> {
+class CustomerCylindersFState extends State<CustomerCylindersPageF> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +49,7 @@ class CustomerCylindersTState extends State<CustomerCylindersPageT> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => TesterSubmissionPage(
+                      builder: (context) => FillSubmissionPage(
                         customer_name: widget.customer_name,
                         serial_id: cylinder_data[index].serialId,
                         volume: cylinder_data[index].volume.toString(),

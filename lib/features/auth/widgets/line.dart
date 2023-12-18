@@ -15,7 +15,7 @@ class _LineState extends State<Line> {
   void initState() {
     super.initState();
     Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(seconds: 1),
       () {
         setState(() {
           lineWidth = 90;

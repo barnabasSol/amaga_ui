@@ -32,8 +32,7 @@ class LoginLogicImpl implements LoginLogic {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     isSnackBarActive = false;
     Navigator.pop(context);
-    AuthResponse response =
-        authResponse(login_info.credential, login_info.password);
+    AuthResponse response = authResponse(login_info.credential, login_info.password);
     if (response.role == "register") {
       Navigator.push(
         context,

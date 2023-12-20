@@ -32,7 +32,7 @@ class _MaintainMainPageState extends State<MaintainMainPage> {
           style: TextStyle(color: Colors.white, fontSize: 29),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
           const SizedBox(
             height: 10,

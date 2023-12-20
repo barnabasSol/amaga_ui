@@ -4,8 +4,7 @@ class Line extends StatefulWidget {
   const Line({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _LineState createState() => _LineState();
+  State<Line> createState() => _LineState();
 }
 
 class _LineState extends State<Line> {
@@ -18,7 +17,7 @@ class _LineState extends State<Line> {
       const Duration(seconds: 1),
       () {
         setState(() {
-          lineWidth = 90;
+          lineWidth = 100;
         });
       },
     );

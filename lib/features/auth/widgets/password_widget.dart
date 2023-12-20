@@ -1,5 +1,4 @@
 // ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 
 class PasswordInput extends StatelessWidget {
@@ -8,7 +7,6 @@ class PasswordInput extends StatelessWidget {
   const PasswordInput({Key? key, this.isValid, required this.input_controller})
       : super(key: key);
 
-//password input
   @override
   Widget build(BuildContext context) {
     Color primaryColor = Theme.of(context).colorScheme.primary;

@@ -1,6 +1,5 @@
 import 'package:amaga/features/registerer/pages/customer_cylinder_page.dart';
 import 'package:amaga/shared/mockdata/customer_list_data.dart';
-import 'package:amaga/features/registerer/repository/customer_logic.dart';
 import 'package:amaga/shared/widgets/customer_card.dart';
 import 'package:amaga/shared/widgets/search.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final CustomerLogic customerLogic = CustomerLogic();
+  
 
   @override
   Widget build(BuildContext context) {

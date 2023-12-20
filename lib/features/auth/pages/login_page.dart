@@ -6,6 +6,7 @@ import 'package:amaga/shared/widgets/custom_input.dart';
 import 'package:amaga/features/auth/widgets/line.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
 import 'package:amaga/features/auth/widgets/password_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -24,6 +25,17 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isDesktop =
+        kIsWeb || (Theme.of(context).platform == TargetPlatform.windows);
+
+    if (isDesktop) {
+      return const Scaffold(
+        body: Center(
+          child: Text('This is a PC'),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(

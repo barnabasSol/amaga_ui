@@ -1,4 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:amaga/features/registerer/pages/customer_cylinder_page.dart';
+import 'package:amaga/services/contracts/token_service.dart';
+import 'package:amaga/services/token_service_impl.dart';
 import 'package:amaga/shared/mockdata/customer_list_data.dart';
 import 'package:amaga/shared/widgets/customer_card.dart';
 import 'package:amaga/shared/widgets/search.dart';
@@ -6,7 +10,6 @@ import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key, required this.token});
-
   final String token;
 
   @override
@@ -14,7 +17,13 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  
+  final TokenService token_service = TokenServiceImpl();
+  bool loadingData = false;
+  @override
+  void initState() {
+    super.initState();
+    token_service.storeToken(widget.token);
+  }
 
   @override
   Widget build(BuildContext context) {

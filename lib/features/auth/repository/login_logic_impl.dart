@@ -12,49 +12,43 @@ class LoginLogicImpl implements LoginLogic {
   bool isSnackBarActive = false;
   @override
   bool loginValidate(String credential, String password) {
-    {
-      if (credential == "abebe" && password == "123") {
-        return true;
-      }
+    if (credential.isEmpty || password.isEmpty) {
       return false;
     }
+    return true;
   }
 
   @override
-  AuthResponse authResponse(String credential, String password) {
-    String role = "fill";
-    String token = "sldfbslhbdlshbdbgsldfg";
-    return AuthResponse(true, "", token: token, role: role);
-  }
-
-  @override
-  void handleSuccessfulLogin(BuildContext context, LoginDto login_info) {
+  void handleSuccessfulLogin(
+    BuildContext context,
+    LoginDto login_info,
+    AuthResponse response,
+  ) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     isSnackBarActive = false;
     Navigator.pop(context);
-    AuthResponse response = authResponse(login_info.credential, login_info.password);
-    if (response.role == "register") {
+    if (response.role.toLowerCase() == "register") {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => RegisterPage(token: response.token),
         ),
       );
-    } else if (response.role == "tester") {
+    } else if (response.role.toLowerCase() == "tester") {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => TesterMainPage(token: response.token),
         ),
       );
-    } else if (response.role == "maintain") {
+    } else if (response.role.toLowerCase() == "maintain") {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => MaintainMainPage(token: response.token),
         ),
       );
-    } else if (response.role == "fill") {
+    } else if (response.role.toLowerCase() == "fill") {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -65,14 +59,18 @@ class LoginLogicImpl implements LoginLogic {
   }
 
   @override
-  void handleFailedLogin(BuildContext context, LoginDto login_info) {
+  void handleFailedLogin(
+    BuildContext context,
+    LoginDto login_info,
+    String errMsg,
+  ) {
     if (!isSnackBarActive) {
       isSnackBarActive = true;
       ScaffoldMessenger.of(context)
           .showSnackBar(
             SnackBar(
               backgroundColor: Colors.red[800],
-              content: const Text('incorrect credential or password'),
+              content: Text(errMsg),
               duration: const Duration(seconds: 3),
               onVisible: () {
                 isSnackBarActive = true;

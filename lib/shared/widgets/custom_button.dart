@@ -1,36 +1,41 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  final void Function() onClicked;
+  final void Function()? onClicked;
   final String label;
   final double width;
   final double height;
-  const CustomButton(
-      {Key? key,
-      required this.onClicked,
-      required this.label,
-      required this.width,
-      required this.height})
-      : super(key: key);
+  final bool? isLoading;
+  const CustomButton({
+    Key? key,
+    this.onClicked,
+    required this.label,
+    required this.width,
+    required this.height,
+    this.isLoading,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width, // Specify your desired width
+      width: width,
       height: height,
       child: TextButton(
-        onPressed: onClicked,
+        onPressed: isLoading! ? null : onClicked,
         style: TextButton.styleFrom(
-          backgroundColor:
-              Theme.of(context).colorScheme.primary, // Set the background color
+          backgroundColor: Theme.of(context).colorScheme.primary,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(17.0), // Set the border radius
+            borderRadius: BorderRadius.circular(17.0),
           ),
         ),
-        child: Text(
-          label,
-          style: const TextStyle(color: Colors.white, fontSize: 20),
-        ),
+        child: isLoading!
+            ? const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              )
+            : Text(
+                label,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+              ),
       ),
     );
   }

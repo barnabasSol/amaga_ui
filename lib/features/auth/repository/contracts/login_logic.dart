@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 abstract class LoginLogic {
   bool loginValidate(String credential, String password);
-  AuthResponse authResponse(String credential, String Password);
-  void handleSuccessfulLogin(BuildContext context, LoginDto login_info);
-  void handleFailedLogin(BuildContext context, LoginDto login_info);
+  void handleSuccessfulLogin(
+      BuildContext context, LoginDto login_info, AuthResponse response);
+  void handleFailedLogin(BuildContext context, LoginDto login_info, String errMsg);
 }

@@ -9,11 +9,10 @@ class CustomDropDown extends StatefulWidget {
       : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _CustomDropDownState createState() => _CustomDropDownState();
+  State<CustomDropDown> createState() => CustomDropDownState();
 }
 
-class _CustomDropDownState extends State<CustomDropDown> {
+class CustomDropDownState extends State<CustomDropDown> {
   String dropdownValue = 'Gas Type';
 
   @override

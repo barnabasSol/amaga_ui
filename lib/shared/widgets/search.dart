@@ -14,6 +14,7 @@ class Search extends StatelessWidget {
           filled: true,
           fillColor: Colors.white,
           hintText: 'Search...',
+
           prefixIcon: const Icon(CupertinoIcons.search, color: Colors.grey),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),

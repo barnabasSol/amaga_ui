@@ -1,5 +1,4 @@
 // ignore_for_file: constant_identifier_names
-
 enum ServiceType {
   REGISTER,
   TEST,
@@ -20,6 +19,3 @@ enum UserType {
   GETKEEPER
 }
 
-void main() {
-  print(ServiceType.STORE.index);
-}

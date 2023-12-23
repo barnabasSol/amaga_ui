@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
-
-import 'package:amaga/features/registerer/pages/customer_cylinder_page.dart';
+import 'package:amaga/features/register/pages/customer_cylinder_page.dart';
 import 'package:amaga/services/contracts/token_service.dart';
 import 'package:amaga/services/token_service_impl.dart';
 import 'package:amaga/shared/mockdata/customer_list_data.dart';
@@ -18,11 +17,13 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final TokenService token_service = TokenServiceImpl();
+  TextEditingController search_controller = TextEditingController();
   bool loadingData = false;
+
   @override
   void initState() {
     super.initState();
-    token_service.storeToken(widget.token);
+    initializeToken();
   }
 
   @override
@@ -49,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Theme.of(context).primaryColor,
         title: const Text(
-          'Register',
+          "Register",
           style: TextStyle(color: Colors.white, fontSize: 29),
         ),
       ),
@@ -58,7 +59,9 @@ class _RegisterPageState extends State<RegisterPage> {
           const SizedBox(
             height: 10,
           ),
-          const Search(),
+          Search(
+            input_controller: search_controller,
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -98,5 +101,9 @@ class _RegisterPageState extends State<RegisterPage> {
         ],
       ),
     );
+  }
+
+  Future<void> initializeToken() async {
+    await token_service.storeToken(widget.token);
   }
 }

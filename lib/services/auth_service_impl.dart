@@ -1,5 +1,5 @@
 // ignore_for_file: unused_local_variable, non_constant_identifier_names
-import 'package:amaga/services/base_url/url.dart';
+import 'package:amaga/services/base_url.dart';
 import 'package:amaga/shared/exceptions/api_exception.dart';
 import 'package:dio/dio.dart';
 import 'package:amaga/models/auth_response.dart';

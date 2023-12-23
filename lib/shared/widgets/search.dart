@@ -1,8 +1,14 @@
+// ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Search extends StatelessWidget {
-  const Search({Key? key}) : super(key: key);
+  const Search({Key? key, this.input_controller, this.onSubmitted})
+      : super(key: key);
+
+  final TextEditingController? input_controller;
+  final void Function(String)? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -10,11 +16,12 @@ class Search extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
       child: TextField(
+        controller: input_controller,
+        onSubmitted: onSubmitted,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,
           hintText: 'Search...',
-
           prefixIcon: const Icon(CupertinoIcons.search, color: Colors.grey),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),

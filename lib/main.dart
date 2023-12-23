@@ -1,4 +1,5 @@
 import 'package:amaga/features/auth/pages/login_page.dart';
+import 'package:amaga/features/exit/pages/exit_main_page.dart';
 import 'package:amaga/shared/routes/routes.dart';
 import 'package:amaga/shared/themes/themes.dart';
 import 'package:flutter/material.dart';

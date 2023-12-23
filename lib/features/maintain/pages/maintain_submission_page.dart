@@ -77,6 +77,7 @@ class MaintainSubmissionPageState extends State<MaintainSubmissionPage> {
                   );
                 }
               },
+              isLoading: false,
               label: "Submit",
               width: 140,
               height: 60,

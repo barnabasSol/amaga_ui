@@ -1,22 +1,23 @@
 import 'package:amaga/shared/mockdata/cylinder_data.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
 import 'package:amaga/shared/widgets/customer_detail.dart';
-import 'package:amaga/shared/widgets/cylinder_card.dart';
+import 'package:amaga/shared/widgets/cylinder_card_with_checkbox.dart';
 import 'package:flutter/material.dart';
 
-class CustomerCylinderPage extends StatefulWidget {
-  const CustomerCylinderPage(
-      {super.key, required this.name, this.email, required this.phoneNumber});
+class CustomerCylinderPageExit extends StatefulWidget {
+  const CustomerCylinderPageExit(
+      {Key? key, required this.name, this.email, required this.phoneNumber})
+      : super(key: key);
 
   final String name;
   final String? email;
   final String phoneNumber;
 
   @override
-  State<CustomerCylinderPage> createState() => _CustomerCylinderPageState();
+  State<CustomerCylinderPageExit> createState() => _CustomerCylinderPageState();
 }
 
-class _CustomerCylinderPageState extends State<CustomerCylinderPage> {
+class _CustomerCylinderPageState extends State<CustomerCylinderPageExit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,13 +26,6 @@ class _CustomerCylinderPageState extends State<CustomerCylinderPage> {
         titleSpacing: 2,
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Theme.of(context).primaryColor,
-        title: const Text(
-          'Customer Cylinder',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-          ),
-        ),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -57,14 +51,6 @@ class _CustomerCylinderPageState extends State<CustomerCylinderPage> {
             Container(
               padding: const EdgeInsets.only(right: 10),
               alignment: Alignment.center,
-              child: CustomButton(
-                onClicked: () {
-                  Navigator.pushNamed(context, '/addcylinder');
-                },
-                label: 'Add Cylinder',
-                width: 200,
-                height: 50,
-              ),
             ),
             const SizedBox(height: 24),
             const Text(
@@ -82,16 +68,24 @@ class _CustomerCylinderPageState extends State<CustomerCylinderPage> {
             const SizedBox(height: 24),
             ...List.generate(
               cylinder_data.length,
-              (index) => CylinderCard(
+              (index) => CylinderCardWithCheckBox(
                 color: cylinder_data[index].color,
                 serialId: cylinder_data[index].serialId,
                 volume: cylinder_data[index].volume.toString(),
                 type: cylinder_data[index].type,
+                onSelected: (String x) {},
               ),
             ),
           ],
         ),
       ),
+      floatingActionButton: const CustomButton(
+        isLoading: false,
+        label: 'Submit',
+        width: 150,
+        height: 50,
+      ), // Add your custom button here
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

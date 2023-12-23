@@ -44,6 +44,8 @@ In the `auth` directory, you'll find the `repository` folder. This contains the 
 
 login with `username - debe` and `password - 123` for register role.
 login with `username - abe` and `password - 123` for tester role.
+login with `username - fill` and `password - 123` for filler role.
+login with `username - main` and `password - 123` for maintainence role.
 more will be added for testing later.
 
 ### Step 3: Understand the Login Logic

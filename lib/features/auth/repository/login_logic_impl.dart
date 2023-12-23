@@ -2,7 +2,7 @@
 import 'package:amaga/features/auth/repository/contracts/login_logic.dart';
 import 'package:amaga/features/fill/pages/fill_main_page.dart';
 import 'package:amaga/features/maintain/pages/maintain_main_page.dart';
-import 'package:amaga/features/registerer/pages/register_page.dart';
+import 'package:amaga/features/register/pages/register_page.dart';
 import 'package:amaga/features/tester/pages/tester_page.dart';
 import 'package:amaga/models/auth_response.dart';
 import 'package:amaga/shared/dtos/login_dto.dart';
@@ -41,14 +41,14 @@ class LoginLogicImpl implements LoginLogic {
           builder: (context) => TesterMainPage(token: response.token),
         ),
       );
-    } else if (response.role.toLowerCase() == "maintain") {
+    } else if (response.role.toLowerCase() == "mainten") {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => MaintainMainPage(token: response.token),
         ),
       );
-    } else if (response.role.toLowerCase() == "fill") {
+    } else if (response.role.toLowerCase() == "filler") {
       Navigator.push(
         context,
         MaterialPageRoute(

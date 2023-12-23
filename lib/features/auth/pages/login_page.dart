@@ -15,8 +15,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    final isDesktop = kIsWeb || (Theme.of(context).platform == TargetPlatform.windows);
-
+    final isDesktop =
+        kIsWeb || (Theme.of(context).platform == TargetPlatform.windows);
     if (isDesktop) {
       //return the desktop page
       return const Scaffold(

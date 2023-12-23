@@ -1,5 +1,4 @@
 // ignore_for_file: non_constant_identifier_names
-
 import 'package:amaga/features/auth/repository/contracts/login_logic.dart';
 import 'package:amaga/features/auth/repository/login_logic_impl.dart';
 import 'package:amaga/features/auth/widgets/line.dart';
@@ -93,7 +92,9 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
 
   void handleLogin() async {
     LoginDto login_info = LoginDto(
-        credential: cred_controller.text, password: password_controller.text);
+      credential: cred_controller.text,
+      password: password_controller.text,
+    );
     setState(() {
       processing = true;
     });
@@ -101,8 +102,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
       cred_controller.text,
       password_controller.text,
     )) {
-      var response =
-          await auth.loginUser(login_info.credential, login_info.password);
+      var response = await auth.loginUser(login_info.credential, login_info.password);
       if (response.isSuccess!) {
         setState(() {
           login_check.handleSuccessfulLogin(context, login_info, response);

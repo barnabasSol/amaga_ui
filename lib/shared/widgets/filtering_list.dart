@@ -13,8 +13,10 @@ class FilteredList extends StatefulWidget {
   final String role;
   final bool byCustomer;
   final bool byCylinder;
+
   List<Customer> customers;
   List<Cylinder> cylinders;
+
   FilteredList({
     super.key,
     required this.byCustomer,
@@ -55,7 +57,7 @@ class _FilteredListState extends State<FilteredList> {
                   phone: widget.customers[index].phone,
                   cylinders: widget.customers[index].cylinders,
                   onClicked: () {
-                    if (widget.role == "maintain") {
+                    if (widget.role.toLowerCase() == "mainten") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -64,7 +66,7 @@ class _FilteredListState extends State<FilteredList> {
                           ),
                         ),
                       );
-                    } else if (widget.role == "tester") {
+                    } else if (widget.role.toLowerCase() == "tester") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -73,7 +75,7 @@ class _FilteredListState extends State<FilteredList> {
                           ),
                         ),
                       );
-                    } else if (widget.role == "fill") {
+                    } else if (widget.role.toLowerCase() == "filler") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -93,7 +95,9 @@ class _FilteredListState extends State<FilteredList> {
                   color: widget.cylinders[index].color,
                   serialId: widget.cylinders[index].serialId,
                   volume: widget.cylinders[index].volume.toString(),
-                  onClicked: () {},
+                  onClicked: () {
+                    
+                  },
                 ),
               ),
       ),

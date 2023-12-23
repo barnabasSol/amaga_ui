@@ -33,33 +33,43 @@ class CustomerCylindersTState extends State<CustomerCylindersPageT> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: Column(
-          children: [
-            const SizedBox(height: 15),
-            const Search(),
-            const SizedBox(height: 15),
-            ...List.generate(
-              cylinder_data.length,
-              (index) => CylinderCardNoType(
-                color: cylinder_data[index].color,
-                serialId: cylinder_data[index].serialId,
-                volume: cylinder_data[index].volume.toString(),
-                onClicked: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => TesterSubmissionPage(
-                        customer_name: widget.customer_name,
-                        serial_id: cylinder_data[index].serialId,
-                        volume: cylinder_data[index].volume.toString(),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            setState(() {
+              cylinder_data = cylinder_data.reversed.toList();
+            });
+            await Future.delayed(
+              const Duration(seconds: 0),
+            );
+          },
+          child: ListView(
+            children: [
+              const SizedBox(height: 15),
+              const Search(),
+              const SizedBox(height: 15),
+              ...List.generate(
+                cylinder_data.length,
+                (index) => CylinderCardNoType(
+                  color: cylinder_data[index].color,
+                  serialId: cylinder_data[index].serialId,
+                  volume: cylinder_data[index].volume.toString(),
+                  onClicked: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TesterSubmissionPage(
+                          customer_name: widget.customer_name,
+                          serial_id: cylinder_data[index].serialId,
+                          volume: cylinder_data[index].volume.toString(),
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

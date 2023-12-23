@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:amaga/features/registerer/repository/cylinder_logic.dart';
-import 'package:amaga/features/registerer/widgets/pop_up.dart';
+import 'package:amaga/features/register/repository/cylinder_logic.dart';
+import 'package:amaga/features/register/widgets/pop_up.dart';
 import 'package:amaga/models/cylinder.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
 import 'package:amaga/shared/widgets/custom_input.dart';
@@ -17,7 +17,7 @@ class AddCylinderPage extends StatefulWidget {
 class _State extends State<AddCylinderPage> {
   List<String> labels = ["Serial Number", "Liter", "Color"];
   List<TextEditingController> textControllers = [];
-  List<String> items = ["F", "T", "M"];
+  final List<String> items = ["F", "T", "M"];
   String selected_gas = "";
 
   void showSnackBar(BuildContext context, String message) {
@@ -104,6 +104,7 @@ class _State extends State<AddCylinderPage> {
                 );
               }
             },
+            isLoading: false,
             label: 'Add Cylinder',
             width: 200,
             height: 60,

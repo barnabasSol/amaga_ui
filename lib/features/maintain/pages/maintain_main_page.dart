@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:amaga/shared/mockdata/customer_list_data.dart';
 import 'package:amaga/shared/mockdata/cylinder_data.dart';
 import 'package:amaga/shared/widgets/filtering_list.dart';
@@ -8,7 +10,7 @@ import 'package:flutter/material.dart';
 class MaintainMainPage extends StatefulWidget {
   const MaintainMainPage({super.key, required this.token});
 
-  final String role = "maintain";
+  final String role = "mainten";
 
   final String token;
   @override
@@ -16,6 +18,7 @@ class MaintainMainPage extends StatefulWidget {
 }
 
 class _MaintainMainPageState extends State<MaintainMainPage> {
+  TextEditingController search_controller = TextEditingController();
   bool byCustomer = true;
   bool byCylinder = false;
   @override
@@ -32,12 +35,14 @@ class _MaintainMainPageState extends State<MaintainMainPage> {
           style: TextStyle(color: Colors.white, fontSize: 29),
         ),
       ),
-      body: ListView(
+      body: Column(
         children: [
           const SizedBox(
             height: 10,
           ),
-          const Search(),
+          Search(
+            input_controller: search_controller,
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -68,7 +73,7 @@ class _MaintainMainPageState extends State<MaintainMainPage> {
             customers: customers,
             cylinders: cylinder_data,
             role: widget.role,
-          )
+          ),
         ],
       ),
     );

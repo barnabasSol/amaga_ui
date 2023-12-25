@@ -6,9 +6,7 @@ import 'package:amaga/shared/widgets/search.dart';
 import 'package:flutter/material.dart';
 
 class TesterMainPage extends StatefulWidget {
-  const TesterMainPage({super.key, required this.token});
-  final String token;
-  final String role = "tester";
+  const TesterMainPage({super.key});
 
   @override
   State<TesterMainPage> createState() => _TesterMainPageState();
@@ -75,7 +73,7 @@ class _TesterMainPageState extends State<TesterMainPage> {
             height: 10,
           ),
           FilteredList(
-              role: widget.role,
+              role: "",
               byCustomer: byCustomer,
               byCylinder: byCylinder,
               customers: customers,

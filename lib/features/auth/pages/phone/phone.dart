@@ -1,14 +1,13 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:amaga/features/auth/repository/contracts/login_logic.dart';
-import 'package:amaga/features/auth/repository/login_logic_impl.dart';
+import 'package:amaga/features/auth/bloc/auth_bloc.dart';
 import 'package:amaga/features/auth/widgets/line.dart';
 import 'package:amaga/features/auth/widgets/password_widget.dart';
-import 'package:amaga/services/auth_service_impl.dart';
-import 'package:amaga/services/contracts/auth_service.dart';
+import 'package:amaga/features/tester/pages/tester_page.dart';
 import 'package:amaga/shared/dtos/login_dto.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
 import 'package:amaga/shared/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PhoneLoginPage extends StatefulWidget {
   const PhoneLoginPage({super.key});
@@ -20,9 +19,6 @@ class PhoneLoginPage extends StatefulWidget {
 class _PhoneLoginPageState extends State<PhoneLoginPage> {
   final cred_controller = TextEditingController();
   final password_controller = TextEditingController();
-  final LoginLogic login_check = LoginLogicImpl();
-  AuthService auth = AuthServiceImpl();
-  bool processing = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +56,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                   height: 30,
                 ),
                 CustomInput(
-                  label: "Email or Phone Number",
+                  label: "Username",
                   input_controller: cred_controller,
                 ),
                 const SizedBox(
@@ -72,12 +68,46 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                 const SizedBox(
                   height: 30,
                 ),
-                CustomButton(
-                  onClicked: handleLogin,
-                  label: 'Login',
-                  width: 350,
-                  height: 60,
-                  isLoading: processing,
+                BlocConsumer<AuthBloc, AuthState>(
+                  listener: (context, state) {
+                    if (state is AuthFailed) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Colors.red[800],
+                        content: Text(state.error_msg),
+                        duration: const Duration(seconds: 3),
+                        behavior: SnackBarBehavior.floating,
+                      ));
+                    }
+                    if (state is AuthSuccess) {
+                      if (state.authResponse.role.toLowerCase() == "tester") {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TesterMainPage(),
+                          ),
+                        );
+                      }
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is AuthLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return CustomButton(
+                      onClicked: () {
+                        BlocProvider.of<AuthBloc>(context).add(
+                          AuthLoginPressed(
+                            loginDto: LoginDto(
+                                credential: cred_controller.text.trim(),
+                                password: password_controller.text.trim()),
+                          ),
+                        );
+                      },
+                      label: 'Login',
+                      width: 350,
+                      height: 60,
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 30,
@@ -90,34 +120,10 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
     );
   }
 
-  void handleLogin() async {
-    LoginDto login_info = LoginDto(
-      credential: cred_controller.text,
-      password: password_controller.text,
-    );
-    setState(() {
-      processing = true;
-    });
-    if (login_check.loginValidate(
-      cred_controller.text,
-      password_controller.text,
-    )) {
-      var response = await auth.loginUser(login_info.credential, login_info.password);
-      if (response.isSuccess!) {
-        setState(() {
-          login_check.handleSuccessfulLogin(context, login_info, response);
-        });
-      } else {
-        setState(() {
-          login_check.handleFailedLogin(context, login_info, response.message!);
-          processing = false;
-        });
-      }
-    } else {
-      setState(() {
-        login_check.handleFailedLogin(context, login_info, "invalid input");
-        processing = false;
-      });
-    }
+  @override
+  void dispose() {
+    cred_controller.dispose();
+    password_controller.dispose();
+    super.dispose();
   }
 }

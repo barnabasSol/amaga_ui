@@ -73,7 +73,6 @@ class TesterSubmissionPageState extends State<TesterSubmissionPage> {
                   );
                 }
               },
-              isLoading: false,
               label: "Submit",
               width: 140,
               height: 60,

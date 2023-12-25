@@ -5,14 +5,12 @@ class CustomButton extends StatelessWidget {
   final String label;
   final double width;
   final double height;
-  final bool? isLoading;
   const CustomButton({
     Key? key,
     this.onClicked,
     required this.label,
     required this.width,
     required this.height,
-    this.isLoading,
   }) : super(key: key);
 
   @override
@@ -21,21 +19,17 @@ class CustomButton extends StatelessWidget {
       width: width,
       height: height,
       child: TextButton(
-        onPressed: isLoading! ? null : onClicked,
+        onPressed: onClicked,
         style: TextButton.styleFrom(
           backgroundColor: Theme.of(context).colorScheme.primary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(17.0),
           ),
         ),
-        child: isLoading!
-            ? const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              )
-            : Text(
-                label,
-                style: const TextStyle(color: Colors.white, fontSize: 20),
-              ),
+        child: Text(
+          label,
+          style: const TextStyle(color: Colors.white, fontSize: 20),
+        ),
       ),
     );
   }

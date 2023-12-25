@@ -104,7 +104,6 @@ class _State extends State<AddCylinderPage> {
                 );
               }
             },
-            isLoading: false,
             label: 'Add Cylinder',
             width: 200,
             height: 60,

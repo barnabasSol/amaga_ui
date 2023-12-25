@@ -80,7 +80,6 @@ class _CustomerCylinderPageState extends State<CustomerCylinderPageExit> {
         ),
       ),
       floatingActionButton: const CustomButton(
-        isLoading: false,
         label: 'Submit',
         width: 150,
         height: 50,

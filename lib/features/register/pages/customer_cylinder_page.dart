@@ -58,7 +58,6 @@ class _CustomerCylinderPageState extends State<CustomerCylinderPage> {
               padding: const EdgeInsets.only(right: 10),
               alignment: Alignment.center,
               child: CustomButton(
-                isLoading: false,
                 onClicked: () {
                   Navigator.pushNamed(context, '/addcylinder');
                 },

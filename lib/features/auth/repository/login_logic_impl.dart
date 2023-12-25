@@ -3,7 +3,6 @@ import 'package:amaga/features/auth/repository/contracts/login_logic.dart';
 import 'package:amaga/features/fill/pages/fill_main_page.dart';
 import 'package:amaga/features/maintain/pages/maintain_main_page.dart';
 import 'package:amaga/features/register/pages/register_page.dart';
-import 'package:amaga/features/tester/pages/tester_page.dart';
 import 'package:amaga/models/auth_response.dart';
 import 'package:amaga/shared/dtos/login_dto.dart';
 import 'package:flutter/material.dart';
@@ -32,13 +31,6 @@ class LoginLogicImpl implements LoginLogic {
         context,
         MaterialPageRoute(
           builder: (context) => RegisterPage(token: response.token),
-        ),
-      );
-    } else if (response.role.toLowerCase() == "tester") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => TesterMainPage(token: response.token),
         ),
       );
     } else if (response.role.toLowerCase() == "mainten") {

@@ -1,3 +1,4 @@
+import 'package:amaga/features/exchange/widgets/expandedConstrained.dart';
 import 'package:amaga/features/exchange/widgets/layout_widget.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class ShowStockCylinder extends StatelessWidget {
 
     return ExchangeLayoutWidget(
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+
         child: SizedBox(
           height: size.width < minWidth
               ? 980
@@ -37,12 +38,12 @@ class ShowStockCylinder extends StatelessWidget {
                               ? Axis.horizontal
                               : Axis.vertical,
                           mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Expanded(
                               child: AddCylinder(title: "Customer Cylinder",
                                 onClicked: () {
-                                  ShowPopUp.cylinderPopUp(context);
+                                  ShowPopUp.cylinderAddPopUp(context);
                                 },
                               ),
                             ),

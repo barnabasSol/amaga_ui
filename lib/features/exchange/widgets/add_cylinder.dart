@@ -1,4 +1,5 @@
 import 'package:amaga/features/exchange/widgets/cylinder_card_exchange.dart';
+import 'package:amaga/features/exchange/widgets/show_pop_up.dart';
 import 'package:amaga/shared/mockdata/cylinder_data.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +58,9 @@ class AddCylinder extends StatelessWidget {
                       color: cylinder_data[index].color,
                       serialId: cylinder_data[index].serialId,
                       volume: cylinder_data[index].volume.toString(),
-                      onClicked: () {},
+                      onClicked: () {
+                              ShowPopUp.cylinderAddRemovePopUp(context);
+                            },
                     ),
                   )
                 ],

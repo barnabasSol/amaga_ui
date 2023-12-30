@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 class CustomDropDown extends StatefulWidget {
   final ValueChanged<String> onSelected;
   final List<String> items;
-
+  final double height;
+  final Color borderColor;
   const CustomDropDown(
-      {Key? key, required this.onSelected, required this.items})
+      {Key? key,
+      required this.onSelected,
+      required this.items,
+      this.height = 60,
+      this.borderColor = const Color.fromARGB(255, 168, 167, 166) })
       : super(key: key);
 
   @override
@@ -18,11 +23,11 @@ class CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: widget.height,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: const Color.fromARGB(255, 168, 167, 166)),
+        border: Border.all(color: widget.borderColor),
         borderRadius: BorderRadius.circular(13),
       ),
       child: DropdownButtonHideUnderline(

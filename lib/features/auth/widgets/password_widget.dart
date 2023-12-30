@@ -30,12 +30,6 @@ class PasswordInput extends StatelessWidget {
           ),
         ),
         obscureText: true,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please enter your password';
-          }
-          return null;
-        },
       ),
     );
   }

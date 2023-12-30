@@ -8,8 +8,7 @@ import 'package:amaga/shared/widgets/search.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key, required this.token});
-  final String token;
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -23,7 +22,6 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-    initializeToken();
   }
 
   @override
@@ -101,9 +99,5 @@ class _RegisterPageState extends State<RegisterPage> {
         ],
       ),
     );
-  }
-
-  Future<void> initializeToken() async {
-    await token_service.storeToken(widget.token);
   }
 }

@@ -18,4 +18,3 @@ enum UserType {
   INVENTORY,
   GETKEEPER
 }
-

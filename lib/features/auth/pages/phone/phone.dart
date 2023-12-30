@@ -2,6 +2,7 @@
 import 'package:amaga/features/auth/bloc/auth_bloc.dart';
 import 'package:amaga/features/auth/widgets/line.dart';
 import 'package:amaga/features/auth/widgets/password_widget.dart';
+import 'package:amaga/features/register/pages/register_page.dart';
 import 'package:amaga/features/tester/pages/tester_page.dart';
 import 'package:amaga/shared/dtos/login_dto.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
@@ -86,6 +87,33 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                             builder: (context) => const TesterMainPage(),
                           ),
                         );
+                        if (state.authResponse.role.toLowerCase() ==
+                            "register") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterPage(),
+                            ),
+                          );
+                        }
+                        /* else if (state.authResponse.role.toLowerCase() ==
+                            "mainten") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  MaintainMainPage(),
+                            ),
+                          );
+                        } else if (state.authResponse.role.toLowerCase() == "filler") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  FillerMainPage(),
+                            ),
+                          );
+                        } */
                       }
                     }
                   },
@@ -98,8 +126,9 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                         BlocProvider.of<AuthBloc>(context).add(
                           AuthLoginPressed(
                             loginDto: LoginDto(
-                                credential: cred_controller.text.trim(),
-                                password: password_controller.text.trim()),
+                              credential: cred_controller.text.trim(),
+                              password: password_controller.text.trim(),
+                            ),
                           ),
                         );
                       },

@@ -8,11 +8,10 @@ import 'package:amaga/shared/widgets/search.dart';
 import 'package:flutter/material.dart';
 
 class MaintainMainPage extends StatefulWidget {
-  const MaintainMainPage({super.key, required this.token});
+  const MaintainMainPage({super.key});
 
   final String role = "mainten";
 
-  final String token;
   @override
   State<MaintainMainPage> createState() => _MaintainMainPageState();
 }

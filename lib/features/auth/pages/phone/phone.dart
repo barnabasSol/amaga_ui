@@ -2,6 +2,8 @@
 import 'package:amaga/features/auth/bloc/auth_bloc.dart';
 import 'package:amaga/features/auth/widgets/line.dart';
 import 'package:amaga/features/auth/widgets/password_widget.dart';
+import 'package:amaga/features/fill/pages/fill_main_page.dart';
+import 'package:amaga/features/maintain/pages/maintain_main_page.dart';
 import 'package:amaga/features/register/pages/register_page.dart';
 import 'package:amaga/features/tester/pages/tester_page.dart';
 import 'package:amaga/shared/dtos/login_dto.dart';
@@ -87,33 +89,30 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                             builder: (context) => const TesterMainPage(),
                           ),
                         );
-                        if (state.authResponse.role.toLowerCase() ==
-                            "register") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const RegisterPage(),
-                            ),
-                          );
-                        }
-                        /* else if (state.authResponse.role.toLowerCase() ==
-                            "mainten") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  MaintainMainPage(),
-                            ),
-                          );
-                        } else if (state.authResponse.role.toLowerCase() == "filler") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  FillerMainPage(),
-                            ),
-                          );
-                        } */
+                      } else if (state.authResponse.role.toLowerCase() ==
+                          "register") {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterPage(),
+                          ),
+                        );
+                      } else if (state.authResponse.role.toLowerCase() ==
+                          "mainten") {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MaintainMainPage(),
+                          ),
+                        );
+                      } else if (state.authResponse.role.toLowerCase() ==
+                          "filler") {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FillerMainPage(),
+                          ),
+                        );
                       }
                     }
                   },

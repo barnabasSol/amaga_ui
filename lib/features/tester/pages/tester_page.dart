@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 class TesterMainPage extends StatefulWidget {
   const TesterMainPage({super.key});
+  final String role = "tester";
 
   @override
   State<TesterMainPage> createState() => _TesterMainPageState();
@@ -73,7 +74,7 @@ class _TesterMainPageState extends State<TesterMainPage> {
             height: 10,
           ),
           FilteredList(
-              role: "",
+              role: widget.role,
               byCustomer: byCustomer,
               byCylinder: byCylinder,
               customers: customers,

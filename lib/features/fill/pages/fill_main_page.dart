@@ -8,11 +8,9 @@ import 'package:flutter/material.dart';
 class FillerMainPage extends StatefulWidget {
   const FillerMainPage({
     super.key,
-    required this.token,
   });
 
-  final String role = "fill";
-  final String token;
+  final String role = "filler";
   @override
   State<FillerMainPage> createState() => _FillerMainPageState();
 }

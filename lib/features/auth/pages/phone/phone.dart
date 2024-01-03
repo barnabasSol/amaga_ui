@@ -5,8 +5,9 @@ import 'package:amaga/features/auth/widgets/password_widget.dart';
 import 'package:amaga/features/fill/pages/fill_main_page.dart';
 import 'package:amaga/features/maintain/pages/maintain_main_page.dart';
 import 'package:amaga/features/register/pages/register_page.dart';
+import 'package:amaga/features/rent/pages/rent_main_page.dart';
 import 'package:amaga/features/tester/pages/tester_page.dart';
-import 'package:amaga/shared/dtos/login_dto.dart';
+import 'package:amaga/models/dtos/login_dto.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
 import 'package:amaga/shared/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +95,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const RegisterPage(),
+                            builder: (context) => const RentMainPage(),
                           ),
                         );
                       } else if (state.authResponse.role.toLowerCase() ==

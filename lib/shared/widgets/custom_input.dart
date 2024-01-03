@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CustomInput extends StatelessWidget {
   final bool? isValid;
   final String? label;
-  final input_controller;
+  final TextEditingController? input_controller;
 
   const CustomInput(
       {Key? key, this.isValid, required this.input_controller, this.label})

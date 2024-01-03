@@ -1,9 +1,8 @@
 import 'package:amaga/features/auth/bloc/auth_bloc.dart';
 import 'package:amaga/features/exchange/pages/edit_stock_cylinder.dart';
-import 'package:amaga/features/exchange/pages/exchange_history.dart';
 import 'package:amaga/shared/widgets/animated_line.dart';
 import 'package:amaga/features/auth/widgets/password_widget.dart';
-import 'package:amaga/shared/dtos/login_dto.dart';
+import 'package:amaga/models/dtos/login_dto.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
 import 'package:amaga/shared/widgets/custom_input.dart';
 import 'package:flutter/material.dart';

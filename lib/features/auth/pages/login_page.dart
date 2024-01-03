@@ -11,13 +11,13 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDesktop =
-        kIsWeb || (Theme.of(context).platform == TargetPlatform.windows);
+    final isDesktop = kIsWeb ||
+        (Theme.of(context).platform != TargetPlatform.iOS &&
+            Theme.of(context).platform != TargetPlatform.android);
     if (isDesktop) {
       //return the desktop page
       return const DesktopLoginPage();
-    }
-    else {
+    } else {
       //the phone page
       return const PhoneLoginPage();
     }

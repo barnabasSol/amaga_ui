@@ -1,7 +1,7 @@
 import 'package:amaga/models/auth_response.dart';
 import 'package:amaga/services/auth_service_impl.dart';
 import 'package:amaga/services/contracts/auth_service.dart';
-import 'package:amaga/shared/dtos/login_dto.dart';
+import 'package:amaga/models/dtos/login_dto.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -21,10 +21,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (event.loginDto.password.isEmpty) {
           return emit(AuthFailed(error_msg: 'password cant be empty'));
         }
+
         AuthResponse authResponse = await authService.loginUser(
           event.loginDto.credential,
           event.loginDto.password,
         );
+
         if (authResponse.isSuccess!) {
           return emit(AuthSuccess(authResponse: authResponse));
         } else {

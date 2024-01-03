@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CylinderCardWithCheckBox extends StatefulWidget {
-  const CylinderCardWithCheckBox(
-      {Key? key,
-      required this.color,
-      required this.serialId,
-      required this.volume,
-      required this.type,
-      required this.onSelected})
-      : super(key: key);
+  const CylinderCardWithCheckBox({
+    Key? key,
+    required this.color,
+    required this.serialId,
+    required this.volume,
+    required this.type,
+    required this.onSelected,
+  }) : super(key: key);
 
   final String color;
   final String serialId;

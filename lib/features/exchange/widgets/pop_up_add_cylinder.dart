@@ -56,8 +56,8 @@ class _PopUpAddCylinderState extends State<PopUpAddCylinder> {
           ),
           const SizedBox(height: 8),
           CustomDropDown(
-            onSelected: (String value) {  }, 
-            items: const ["one" , "two"],
+            onSelected: (String value) {},
+            items: const ["one", "two"],
             height: 45,
             borderColor: const Color(0xffe3e5e5),
             //input_controller: serialNumberController,

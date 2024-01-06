@@ -9,14 +9,14 @@ class LoginDto {
 
   Map<String, dynamic> toJson() {
     return {
-      'credential': credential,
+      'username': credential,
       'password': password,
     };
   }
 
   static LoginDto fromJson(Map<String, dynamic> json) {
     return LoginDto(
-      credential: json['credential'],
+      credential: json['username'],
       password: json['password'],
     );
   }

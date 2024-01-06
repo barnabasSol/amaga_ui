@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:amaga/features/auth/pages/desktop/desktop.dart';
-import 'package:amaga/features/auth/pages/phone/phone.dart';
+import 'package:amaga/features/auth/presentation/pages/desktop/desktop.dart';
+import 'package:amaga/features/auth/presentation/pages/phone/phone.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

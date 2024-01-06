@@ -1,11 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:amaga/features/auth/bloc/auth_bloc.dart';
-import 'package:amaga/features/auth/widgets/line.dart';
-import 'package:amaga/features/auth/widgets/password_widget.dart';
+import 'package:amaga/features/auth/presentation/widgets/line.dart';
+import 'package:amaga/features/auth/presentation/widgets/password_widget.dart';
 import 'package:amaga/features/fill/pages/fill_main_page.dart';
 import 'package:amaga/features/maintain/pages/maintain_main_page.dart';
 import 'package:amaga/features/register/pages/register_page.dart';
-import 'package:amaga/features/rent/pages/rent_main_page.dart';
 import 'package:amaga/features/tester/pages/tester_page.dart';
 import 'package:amaga/models/dtos/login_dto.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';

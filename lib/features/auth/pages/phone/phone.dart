@@ -95,7 +95,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const RentMainPage(),
+                            builder: (context) => const RegisterPage(),
                           ),
                         );
                       } else if (state.authResponse.role.toLowerCase() ==

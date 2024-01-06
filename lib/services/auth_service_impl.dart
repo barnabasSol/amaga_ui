@@ -10,6 +10,9 @@ class AuthServiceImpl implements AuthService {
   Future<AuthResponse> loginUser(String credential, String password) async {
     const String route = "$baseUrl/auth/login";
     Dio dio = Dio();
+    dio.options.connectTimeout =
+        const Duration(seconds: 10); // Set timeout to 10 seconds
+
     try {
       final response = await dio.post(
         route,
@@ -26,7 +29,19 @@ class AuthServiceImpl implements AuthService {
         message: '',
       );
     } on DioException catch (e) {
-      if (e.response != null) {
+      if (e.type == DioExceptionType.connectionTimeout) {
+        return AuthResponse(
+            token: '',
+            role: '',
+            isSuccess: false,
+            message: "Connection timed out");
+      } else if (e.type == DioExceptionType.connectionError) {
+        return AuthResponse(
+            token: '',
+            role: '',
+            isSuccess: false,
+            message: "Network problem occurred");
+      } else if (e.response != null) {
         var errorResponse = ApiError.fromJson(e.response!.data);
         return AuthResponse(
             token: '',

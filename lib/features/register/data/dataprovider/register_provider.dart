@@ -1,30 +1,25 @@
 import 'dart:convert';
-import 'package:amaga/models/dtos/login_dto.dart';
 import 'package:amaga/services/base_url.dart';
 import 'package:amaga/shared/exceptions/internet_exceptions.dart';
 import 'package:dio/dio.dart';
 
-class AuthProvider {
+class RegisterProvider {
   final Dio dio;
 
-  AuthProvider(this.dio);
-  Future<String> loginUserProvider(LoginDto loginDto) async {
-    const String route = "$baseUrl/auth/login";
+  RegisterProvider(this.dio);
+  Future<String> getRegisterCustomers() async {
+    const String route = "$baseUrl/customers";
     try {
-      final response = await dio.post(
-        route,
-        data: loginDto.toJson(),
-      );
+      final response = await dio.get(route);
       return jsonEncode(response.data);
     } on DioException catch (e) {
       if (e.response != null) {
         var serverError = jsonDecode(e.response.toString());
         if (e.response?.statusCode == 401) {
-          throw UnauthorizedException();
+          throw UnauthorizedException(
+              message: serverError['message'].toString());
         } else {
-          throw BadRequestException(
-            message: serverError['message'].toString(),
-          );
+          throw BadRequestException(message: serverError['message'].toString());
         }
       } else if (e.type == DioExceptionType.connectionError) {
         throw NetworkException();

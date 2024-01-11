@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:amaga/features/register/repository/cylinder_logic.dart';
-import 'package:amaga/features/register/widgets/pop_up.dart';
+import 'package:amaga/features/register/data/repository/cylinder_logic.dart';
+import 'package:amaga/features/register/presentation/widgets/pop_up.dart';
 import 'package:amaga/models/cylinder.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
 import 'package:amaga/shared/widgets/custom_input.dart';
@@ -20,21 +20,21 @@ class _State extends State<AddCylinderPage> {
   final List<String> items = ["F", "T", "M"];
   String selected_gas = "";
 
-  void showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.red[800],
-        content: Text(message),
-      ),
-    );
-  }
-
   @override
   void initState() {
     super.initState();
     textControllers = List.generate(
       labels.length,
       (index) => TextEditingController(),
+    );
+  }
+
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.red[800],
+        content: Text(message),
+      ),
     );
   }
 
@@ -111,5 +111,14 @@ class _State extends State<AddCylinderPage> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // Dispose of each controller in the list
+    for (var controller in textControllers) {
+      controller.dispose();
+    }
+    super.dispose();
   }
 }

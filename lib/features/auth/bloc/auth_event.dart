@@ -8,3 +8,5 @@ final class AuthLoginPressed extends AuthEvent {
 
   AuthLoginPressed({required this.loginDto});
 }
+
+final class AuthLogOutPressed extends AuthEvent {}

@@ -2,10 +2,6 @@
 import 'package:amaga/features/auth/bloc/auth_bloc.dart';
 import 'package:amaga/features/auth/presentation/widgets/line.dart';
 import 'package:amaga/features/auth/presentation/widgets/password_widget.dart';
-import 'package:amaga/features/fill/pages/fill_main_page.dart';
-import 'package:amaga/features/maintain/pages/maintain_main_page.dart';
-import 'package:amaga/features/register/pages/register_page.dart';
-import 'package:amaga/features/tester/pages/tester_page.dart';
 import 'package:amaga/models/dtos/login_dto.dart';
 import 'package:amaga/shared/widgets/custom_button.dart';
 import 'package:amaga/shared/widgets/custom_input.dart';
@@ -74,45 +70,32 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                 BlocConsumer<AuthBloc, AuthState>(
                   listener: (context, state) {
                     if (state is AuthFailed) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        backgroundColor: Colors.red[800],
-                        content: Text(state.error_msg),
-                        duration: const Duration(seconds: 3),
-                        behavior: SnackBarBehavior.floating,
-                      ));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          dismissDirection: DismissDirection.endToStart,
+                          backgroundColor: Colors.red[800],
+                          content: Text(state.error_msg),
+                          duration: const Duration(seconds: 3),
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
                     }
                     if (state is AuthSuccess) {
-                      if (state.authResponse.role.toLowerCase() == "tester") {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const TesterMainPage(),
-                          ),
-                        );
-                      } else if (state.authResponse.role.toLowerCase() ==
-                          "register") {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const RegisterPage(),
-                          ),
-                        );
-                      } else if (state.authResponse.role.toLowerCase() ==
-                          "mainten") {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MaintainMainPage(),
-                          ),
-                        );
-                      } else if (state.authResponse.role.toLowerCase() ==
-                          "filler") {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const FillerMainPage(),
-                          ),
-                        );
+                      switch (state.authResponse.role) {
+                        case "REGISTER":
+                          Navigator.pushNamed(context, '/registermainpage');
+                          break;
+                        case "TESTER":
+                          Navigator.pushNamed(context, '/testermainpage');
+                          break;
+                        case "MAINTEN":
+                          Navigator.pushNamed(context, '/maintenmainpage');
+                          break;
+                        case "FILLER":
+                          Navigator.pushNamed(context, '/fillermainpage');
+                          break;
+                        default:
+                          break;
                       }
                     }
                   },
@@ -122,14 +105,14 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                     }
                     return CustomButton(
                       onClicked: () {
-                        BlocProvider.of<AuthBloc>(context).add(
-                          AuthLoginPressed(
-                            loginDto: LoginDto(
-                              credential: cred_controller.text.trim(),
-                              password: password_controller.text.trim(),
-                            ),
-                          ),
-                        );
+                        context.read<AuthBloc>().add(
+                              AuthLoginPressed(
+                                loginDto: LoginDto(
+                                  credential: cred_controller.text.trim(),
+                                  password: password_controller.text.trim(),
+                                ),
+                              ),
+                            );
                       },
                       label: 'Login',
                       width: 350,

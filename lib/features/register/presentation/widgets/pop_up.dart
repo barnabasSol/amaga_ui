@@ -1,4 +1,4 @@
-import 'package:amaga/features/register/repository/cylinder_logic.dart';
+import 'package:amaga/features/register/data/repository/cylinder_logic.dart';
 import 'package:amaga/models/cylinder.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,9 @@ class CylinderAddPopUp extends StatelessWidget {
         'Color: ${newCylinder.color}\n'
         'Type: ${newCylinder.type}\n'
         'Volume: ${newCylinder.volume}',
-        style: const TextStyle(fontSize: 20),
+        style: const TextStyle(
+          fontSize: 20,
+        ),
       ),
       actions: [
         TextButton(

@@ -1,7 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:amaga/features/register/pages/customer_cylinder_page.dart';
-import 'package:amaga/services/contracts/token_service.dart';
-import 'package:amaga/services/token_service_impl.dart';
+import 'package:amaga/features/register/presentation/pages/customer_cylinder_page.dart';
 import 'package:amaga/shared/mockdata/customer_list_data.dart';
 import 'package:amaga/shared/widgets/customer_card.dart';
 import 'package:amaga/shared/widgets/search.dart';
@@ -15,7 +13,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TokenService token_service = TokenServiceImpl();
   TextEditingController search_controller = TextEditingController();
   bool loadingData = false;
 

@@ -1,5 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:amaga/features/register/widgets/add_customer_button.dart';
+import 'package:amaga/features/register/presentation/widgets/add_customer_button.dart';
 import 'package:amaga/shared/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
 

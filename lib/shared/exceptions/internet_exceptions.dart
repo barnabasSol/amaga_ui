@@ -7,7 +7,7 @@ class TimeoutException implements Exception {
 
 class NetworkException implements Exception {
   final String message;
-  NetworkException({this.message = "You have a network problem"});
+  NetworkException({this.message = "No Internet"});
   @override
   String toString() => message;
 }
@@ -22,6 +22,13 @@ class UnknownException implements Exception {
 class BadRequestException implements Exception {
   final String message;
   BadRequestException({this.message = ""});
+  @override
+  String toString() => message;
+}
+
+class UnauthorizedException {
+  final String message;
+  UnauthorizedException({this.message = "401"});
   @override
   String toString() => message;
 }

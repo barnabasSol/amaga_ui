@@ -11,7 +11,7 @@ class AuthRepository {
 
   Future<AuthResponse> loginUser(LoginDto loginDto) async {
     try {
-      final String response = await _authProvider.loginUserRaw(loginDto);
+      final String response = await _authProvider.loginUserProvider(loginDto);
       final authData = AuthResponse.fromJson(jsonDecode(response));
       authData.isSuccess = true;
       return authData;
@@ -26,6 +26,13 @@ class AuthRepository {
       return AuthResponse(
         isSuccess: false,
         message: NetworkException().toString(),
+        token: '',
+        role: '',
+      );
+    } on UnauthorizedException {
+      return AuthResponse(
+        isSuccess: false,
+        message: "Invalid Credentials",
         token: '',
         role: '',
       );

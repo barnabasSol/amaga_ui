@@ -19,3 +19,13 @@ final class AuthFailed extends AuthState {
 
   AuthFailed({required this.error_msg});
 }
+
+final class AuthLogOutLoading extends AuthState {}
+
+final class AuthLogOutSuccess extends AuthState {}
+
+final class AuthLogOutFailed extends AuthState {
+  final String error_msg;
+
+  AuthLogOutFailed({required this.error_msg});
+}

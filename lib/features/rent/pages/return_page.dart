@@ -1,7 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:amaga/features/rent/pages/return_customer_cylinder_page.dart';
-import 'package:amaga/services/contracts/token_service.dart';
-import 'package:amaga/services/token_service_impl.dart';
 import 'package:amaga/shared/mockdata/customer_list_data.dart';
 import 'package:amaga/shared/widgets/customer_card.dart';
 import 'package:amaga/shared/widgets/search.dart';
@@ -15,8 +13,7 @@ class ReturnPage extends StatefulWidget {
 }
 
 class _ReturnPageState extends State<ReturnPage> {
-  final TokenService token_service = TokenServiceImpl();
-  TextEditingController search_controller = TextEditingController();
+  final search_controller = TextEditingController();
   bool loadingData = false;
 
   @override
